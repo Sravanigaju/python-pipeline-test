@@ -4,15 +4,21 @@ pipeline:
   team: testing
 
   tasks:
-    - name: checkout
-      image: alpine/git
-      script: |
-        git clone https://github.com/Sravanigaju/python-pipeline-test.git /workspace/source
-        ls /workspace/source
-
-    - name: run-python
+    - name: run-real-flow
       image: python:3.9
       script: |
-        cd /workspace/source
-        ls
+        apt update && apt install -y git
+
+        echo "Step 1: Cloning repo..."
+        git clone https://github.com/Sravanigaju/python-pipeline-test.git repo
+
+        echo "Step 2: Moving into repo..."
+        cd repo
+
+        echo "Step 3: Installing dependencies..."
+        pip install -r requirements.txt
+
+        echo "Step 4: Running application..."
         python app.py
+
+        echo "Step 5: Completed pipeline successfully"
