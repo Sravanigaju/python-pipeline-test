@@ -1,5 +1,11 @@
 import json
 
-with open("data.json") as f:
-    data = json.load(f)
-    print("Data from simulated S3:", data)
+data = {
+    "name": "Sravani",
+    "status": "processed"
+}
+
+with open("output.json", "w") as f:
+    json.dump(data, f)
+
+print("File generated successfully")
