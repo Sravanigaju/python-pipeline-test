@@ -1,0 +1,18 @@
+pipeline:
+  name: python-aws-pipeline-v2
+  organization: testlaceapp
+  team: testing
+
+  tasks:
+    - name: checkout
+      image: alpine/git
+      script: |
+        git clone https://github.com/Sravanigaju/python-pipeline-test.git /workspace/source
+        ls /workspace/source
+
+    - name: run-python
+      image: python:3.9
+      script: |
+        cd /workspace/source
+        ls
+        python app.py
